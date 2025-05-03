@@ -1,7 +1,7 @@
-import Agent from "../models/agents.model.js";
-import { errorHandler } from "../utils/erros.js";
+const Agent = require("../models/agents.model.js");
+const { errorHandler } = require("../utils/erros.js");
 
-export const agents = async (req, res, next) => {
+const agents = async (req, res, next) => {
     try {
         // Fetch all agents from the database
         const allAgents = await Agent.find().select('-password');  // Exclude password field
@@ -10,3 +10,5 @@ export const agents = async (req, res, next) => {
         next(error);
     }
 };
+
+module.exports = { agents };

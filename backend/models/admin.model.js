@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const AdminSchema = new mongoose.Schema({
     username: {
@@ -28,4 +28,4 @@ const AdminSchema = new mongoose.Schema({
 
 const Admin = mongoose.model('Admin', AdminSchema);
 
-export default Admin;
+module.exports = Admin;

@@ -1,16 +1,15 @@
-import express from 'express';
-import mongoose from 'mongoose'; 
-import dotenv from 'dotenv';
-import rentPropertiesRouter from './Routes/RentProperties.routes.js';
-import agentsRouter from './Routes/agents.routes.js';
-import addAgents from './Routes/addAgents.routes.js';
-import adminsRouter from './Routes/admins.routes.js';
-import addAdmins from './Routes/addAdmins.route.js';
-import adminSignIn from './Routes/adminSignIn.route.js';
-import authRouter from './Routes/authStatus.js';
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
-
+const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const rentPropertiesRouter = require('./Routes/RentProperties.routes');
+const agentsRouter = require('./Routes/agents.routes');
+const addAgents = require('./Routes/addAgents.routes');
+const adminsRouter = require('./Routes/admins.routes');
+const addAdmins = require('./Routes/addAdmins.route');
+const adminSignIn = require('./Routes/adminSignIn.route');
+const authRouter = require('./Routes/authStatus');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 dotenv.config();
 
@@ -24,13 +23,11 @@ app.use(cors({
 
 app.use(express.json());
 
-
 mongoose.connect(process.env.MONGO).then(() => {
     console.log('Connected to MongoDB');
 }).catch((err) => {
     console.error('Error connecting to MongoDB:', err);
 });
-
 
 app.use('/api/properties', rentPropertiesRouter);
 app.use('/api', agentsRouter);
@@ -40,7 +37,6 @@ app.use('/admins', addAdmins);
 app.use('/api', adminSignIn);
 app.use(cookieParser());
 app.use('/api/admin', authRouter);
-
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;

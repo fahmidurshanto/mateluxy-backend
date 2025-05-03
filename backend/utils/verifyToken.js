@@ -1,7 +1,7 @@
 // backend/middleware/verifyToken.js
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 
-export const verifyToken = (req, res, next) => {
+const verifyToken = (req, res, next) => {
   const token = req.cookies.access_token;
 
   if (!token) {
@@ -16,3 +16,5 @@ export const verifyToken = (req, res, next) => {
     return res.status(401).json({ success: false, message: "Invalid token" });
   }
 };
+
+module.exports = { verifyToken };

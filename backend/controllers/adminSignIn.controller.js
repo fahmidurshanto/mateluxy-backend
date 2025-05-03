@@ -1,10 +1,9 @@
-import bcryptjs from "bcryptjs";
-import { errorHandler } from "../utils/erros.js";
-import Admin from "../models/admin.model.js";
-import jwt from "jsonwebtoken";
+const bcryptjs = require("bcryptjs");
+const { errorHandler } = require("../utils/erros.js");
+const Admin = require("../models/admin.model.js");
+const jwt = require("jsonwebtoken");
 
-
-export const adminSignIn = async (req, res, next) => {
+const adminSignIn = async (req, res, next) => {
     const { email, password } = req.body;
     const hashedPassword = await bcryptjs.hash(password, 10);
     try {
@@ -17,16 +16,15 @@ export const adminSignIn = async (req, res, next) => {
             return next(errorHandler(401, "Invalid credentials"));
         }
         const token = jwt.sign({ id: validAdmin._id }, process.env.JWT_SECRET);
-
         const { password: pass, ...rest } = validAdmin._doc;
-
         res.cookie("access_token", token, {
             httpOnly: true,
             secure: false, // must be false on localhost (HTTP)
             sameSite: "lax" // or "strict", either is fine
         }).status(200).json(rest);
-
     } catch (error) {
         next(error);
     }
 };
+
+module.exports = { adminSignIn };

@@ -1,3 +1,5 @@
-export const admins = (req, res) => {
+const admins = (req, res) => {
     res.send("Admins");
 };
+
+module.exports = { admins };

@@ -1,8 +1,8 @@
-import express from "express";
-import { agents } from "../controllers/agents.controller.js";
+const express = require("express");
+const { agents } = require("../controllers/agents.controller.js");
 
 const router = express.Router();
 
-router.get("/agents",agents);
+router.get("/agents", agents);
 
-export default router;
+module.exports = router;

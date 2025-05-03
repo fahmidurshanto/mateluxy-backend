@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const propertySchema = new mongoose.Schema({
     propertyTitle: { type: String, required: true },
@@ -37,4 +37,4 @@ const propertySchema = new mongoose.Schema({
     timestamps: true
 });
 
-export default mongoose.model('Property', propertySchema);
+module.exports = mongoose.model('Property', propertySchema);

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const AgentSchema = new mongoose.Schema({
   username: {
@@ -67,4 +67,4 @@ const AgentSchema = new mongoose.Schema({
 
 const Agent = mongoose.model('Agent', AgentSchema);
 
-export default Agent;
+module.exports = Agent;

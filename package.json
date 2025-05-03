@@ -2,7 +2,7 @@
   "name": "real-state-frontend-main",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "nodemon backend/index.js",
     "start": "node backend/index.js"
